@@ -1,0 +1,6 @@
+server:
+  port: 2244
+
+spring:
+  application:
+    name: jenkins with ci cd
