@@ -10,12 +10,21 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1.0.1
+      # Kodni repositorydan olish
+      - uses: actions/checkout@v3
+
+      # Java o'rnatamiz (Java 17 LTS tavsiya qilinadi)
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
         with:
-          version: '12'
-      - run: npm ci
-      - run: npm test
-      - run: npm build
-      - run: npm deploy
+          java-version: '17'
+          distribution: 'temurin'
+
+       # Maven dependencylarni o'rnatish va build qilish
+      - name: Build with Maven
+        run: mvn clean install
+
+      # Testlarni ishga tushurish
+      - name: Run tests
+        run: mvn test
 
