@@ -1,0 +1,21 @@
+name: CI CD is Easy
+
+on:
+  push:
+    branches:
+      - abbos
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1.0.1
+        with:
+          version: '12'
+      - run: npm ci
+      - run: npm test
+      - run: npm build
+      - run: npm deploy
+
